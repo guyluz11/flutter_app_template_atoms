@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template_atoms/domain/controllers/controllers.dart';
 import 'package:flutter_app_template_atoms/presentation/core/color_schemes.dart';
+import 'package:flutter_app_template_atoms/presentation/core/global_variables.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: theme.light(),
       darkTheme: theme.dark(),
-      title: 'Infinite Horizons',
+      title: GlobalVariables.appName,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
