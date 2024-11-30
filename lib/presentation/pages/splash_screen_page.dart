@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template_atoms/domain/controllers/controllers.dart';
+import 'package:flutter_app_template_atoms/presentation/atoms/atoms.dart';
+import 'package:flutter_app_template_atoms/presentation/core/global_variables.dart';
 import 'package:flutter_app_template_atoms/presentation/core/theme_data.dart';
 
 class SplashPage extends StatefulWidget {
@@ -43,8 +45,12 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: ColoredBox(
         color: AppThemeData.logoBackgroundColor,
-        child: const Center(
-          child: SizedBox(),
+        child: Center(
+          child: ButtonAtom(
+            variant: ButtonVariant.highEmphasisFilled,
+            onPressed: () {},
+            text: GlobalVariables.appName,
+          ),
           // TODO: Add your product logo
           // ImageAtom(
           //   'assets/logo.png',
