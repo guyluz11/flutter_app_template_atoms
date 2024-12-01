@@ -32,6 +32,7 @@ class PageEnclosureMolecule extends StatelessWidget {
 
   Widget topBarHelper() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TopBarMolecule(
           topBarType: topBarType,
