@@ -1,7 +1,7 @@
 # flutter_app_template_atoms
 <div align="center" style="display: flex; justify-content: center; gap: 20px;">
 
-[![Playstore: install](https://img.shields.io/badge/Playstore-install-brightgreen?logo=googleplay)](https://play.google.com/store/apps/details?id=space.wordlink)[![dart CI](https://github.com/guyluz11/youtube_helper/actions/workflows/dart.yml/badge.svg)](https://github.com/guyluz11/youtube_helper/actions?query=workflow%3A%22Dart+CI%22) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [<img src="https://badges.frapsoft.com/os/v1/open-source-200x33.png?v=103" alt="Open Source Love" height="20">](https://en.wikipedia.org/wiki/Open_source)
+[![Playstore: install](https://img.shields.io/badge/Playstore-install-brightgreen?logo=googleplay)](https://play.google.com/store/apps/details?id=space.wordlink)[![dart CI](https://github.com/guyluz11/flutter_app_template_atoms/actions/workflows/dart.yml/badge.svg)](https://github.com/guyluz11/flutter_app_template_atoms/actions?query=workflow%3A%22Dart+CI%22) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0) [<img src="https://badges.frapsoft.com/os/v1/open-source-200x33.png?v=103" alt="Open Source Love" height="20">](https://en.wikipedia.org/wiki/Open_source)
 
 </div>
 

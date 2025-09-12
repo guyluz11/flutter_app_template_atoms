@@ -1,7 +1,7 @@
 {
-  "name": "youtube_helper",
+  "name": "flutter_app_template_atoms",
   "version": "0.0.1",
-  "description": "Monorepo for youtube_helper project. Contains Dart, Flutter, Python, and JS/TS packages.",
+  "description": "Monorepo for flutter_app_template_atoms project. Contains Dart, Flutter, Python, and JS/TS packages.",
   "scripts": {
     "install-melos": "cd tools/project_organizer && dart pub get",
     "bootstrap": "cd tools/project_organizer && dart run melos bootstrap",

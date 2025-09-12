@@ -1,4 +1,4 @@
-name: youtube_helper
+name: flutter_app_template_atoms
 packages:
   - ../../frontend/
 scripts:
