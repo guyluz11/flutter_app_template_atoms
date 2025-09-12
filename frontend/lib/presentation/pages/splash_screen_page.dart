@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template_atoms/domain/controllers/controllers.dart';
 import 'package:flutter_app_template_atoms/presentation/atoms/atoms.dart';
-import 'package:flutter_app_template_atoms/presentation/core/global_variables.dart';
-import 'package:flutter_app_template_atoms/presentation/core/theme_data.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -42,20 +40,11 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ColoredBox(
-        color: AppThemeData.logoBackgroundColor,
-        child: Center(
-          child: ButtonAtom(
-            variant: ButtonVariant.highEmphasisFilled,
-            onPressed: () {},
-            text: GlobalVariables.appName,
-          ),
-          // TODO: Add your product logo
-          // ImageAtom(
-          //   'assets/logo.png',
-          //   hero: 'full_logo',
-          // ),
+    return const Scaffold(
+      body: Center(
+        child: ImageAtom(
+          'assets/logo.png',
+          hero: 'full_logo',
         ),
       ),
     );

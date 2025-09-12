@@ -11,6 +11,7 @@ class TextAtom extends StatelessWidget {
     this.translationArgs,
     this.translate = true,
     this.variant = TextVariant.regular,
+    this.isSelectable = false,
   });
 
   final String text;
@@ -21,6 +22,7 @@ class TextAtom extends StatelessWidget {
   final List<String>? translationArgs;
   final bool translate;
   final TextVariant variant;
+  final bool isSelectable;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +43,21 @@ class TextAtom extends StatelessWidget {
       case TextVariant.medium:
         tempStyle = textTheme.bodyMedium;
     }
+    if (style != null) {
+      tempStyle = tempStyle?.copyWith(color: style!.color);
+    }
+
+    if (isSelectable) {
+      return SelectableText(
+        text,
+        style: tempStyle,
+        maxLines: maxLines,
+        textAlign: textAlign,
+      );
+    }
 
     return Text(
+      // TODO: Add translation support
       // translate && text.isNotEmpty ? text.tr(args: translationArgs) : text,
       text,
       style: tempStyle,

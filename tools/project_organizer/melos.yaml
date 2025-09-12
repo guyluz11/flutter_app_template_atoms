@@ -1,0 +1,4 @@
+name: youtube_helper
+packages:
+  - ../../frontend/
+scripts:

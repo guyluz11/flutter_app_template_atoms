@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 
 class GlobalVariables {
   static String appName = 'Flutter App Template Atoms';
+  static String appNameForFolders = 'flutter_app_template_atoms';
   static const BoxConstraints maxWidth = BoxConstraints(maxWidth: 600);
 
   static EdgeInsetsGeometry defaultPadding = const EdgeInsets.all(8.0);

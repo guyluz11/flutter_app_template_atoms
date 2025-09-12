@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template_atoms/domain/global_variables/global_functions.dart';
 import 'package:flutter_app_template_atoms/presentation/atoms/atoms.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,7 +14,6 @@ class ListTileAtom extends StatelessWidget {
     this.translateSubtitle = true,
     this.onTap,
     this.enable = true,
-    this.isCrossed = false,
   });
 
   final String title;
@@ -25,19 +25,25 @@ class ListTileAtom extends StatelessWidget {
   final bool translateSubtitle;
   final VoidCallback? onTap;
   final bool enable;
-  final bool isCrossed;
+
+  Future onTapLocal() async {
+    if (onTap == null) {
+      return;
+    }
+    await tapWithSoundAndVibration();
+    onTap!();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Widget titleWidget = TextAtom(title, translate: translateTitle);
+    Widget titleWidget;
+    titleWidget = TextAtom(title, translate: translateTitle);
 
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
 
     return ListTile(
-      titleAlignment: ListTileTitleAlignment.top,
       enabled: enable,
-      contentPadding: EdgeInsets.zero,
       title: titleIcon == null
           ? titleWidget
           : Row(
@@ -57,7 +63,7 @@ class ListTileAtom extends StatelessWidget {
           : TextAtom(subtitle!, translate: translateSubtitle),
       leading: leading,
       trailing: trailing,
-      onTap: onTap,
+      onTap: onTapLocal,
     );
   }
 }

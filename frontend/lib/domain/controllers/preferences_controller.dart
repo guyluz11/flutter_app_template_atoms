@@ -36,11 +36,4 @@ abstract class PreferencesController {
 enum PreferenceKeys {
   loginCounter,
   isLockScreen,
-  isSound,
-  pausedTime,
-  timerState,
-  remainingTimerTime,
-  freeText,
-  tipType,
-  sleepPermissionGranted,
 }

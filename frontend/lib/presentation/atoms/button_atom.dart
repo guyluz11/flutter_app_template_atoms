@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_template_atoms/domain/controllers/controllers.dart';
+import 'package:flutter_app_template_atoms/domain/global_variables/global_functions.dart';
 import 'package:flutter_app_template_atoms/presentation/atoms/atoms.dart';
 
-class ButtonAtom extends StatelessWidget {
+class ButtonAtom extends StatefulWidget {
   const ButtonAtom({
     required this.variant,
     required this.onPressed,
@@ -18,17 +18,28 @@ class ButtonAtom extends StatelessWidget {
   final VoidCallback onPressed;
   final String? text;
   final IconData? icon;
-
-  double get width => 150;
-
-  double get _height => 60;
   final bool disabled;
   final bool translate;
   final bool disableActionType;
 
-  void onPressVibrate() {
-    VibrationController.instance.vibrate(VibrationType.light);
-    onPressed();
+  static Duration loadSuccessDuration =
+      const Duration(seconds: 1, milliseconds: 200);
+
+  static Duration loadErrorDuration =
+      const Duration(seconds: 1, milliseconds: 200);
+
+  @override
+  State<ButtonAtom> createState() => ButtonAtomState();
+}
+
+class ButtonAtomState extends State<ButtonAtom> {
+  double get width => 150;
+
+  double get _height => 60;
+
+  Future<void> onPress() async {
+    await tapWithSoundAndVibration();
+    widget.onPressed();
   }
 
   Widget buttonConstraints({required Widget child}) => Container(
@@ -40,8 +51,8 @@ class ButtonAtom extends StatelessWidget {
       );
 
   Widget label(TextTheme textTheme, {Color? color}) => TextAtom(
-        text ?? '',
-        translate: translate,
+        widget.text ?? '',
+        translate: widget.translate,
         maxLines: 1,
         style: textTheme.bodyLarge!.copyWith(color: color),
       );
@@ -52,13 +63,13 @@ class ButtonAtom extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
-    switch (variant) {
+    switch (widget.variant) {
       case ButtonVariant.highEmphasisFilled:
-        if (icon == null) {
+        if (widget.icon == null) {
           return buttonConstraints(
             child: FilledButton(
-              onPressed: disabled ? null : onPressed,
-              style: disabled
+              onPressed: widget.disabled ? null : onPress,
+              style: widget.disabled
                   ? null
                   : FilledButton.styleFrom().copyWith(
                       alignment: Alignment.center,
@@ -72,25 +83,25 @@ class ButtonAtom extends StatelessWidget {
         }
         return buttonConstraints(
           child: FilledButton.icon(
-            onPressed: disabled ? null : onPressed,
-            style: disabled
+            onPressed: widget.disabled ? null : onPress,
+            style: widget.disabled
                 ? null
                 : FilledButton.styleFrom().copyWith(
                     alignment: Alignment.center,
                     backgroundColor:
                         WidgetStateProperty.all(colorScheme.secondaryContainer),
                   ),
-            icon: Icon(icon, color: colorScheme.onPrimaryContainer),
+            icon: Icon(widget.icon, color: colorScheme.onPrimaryContainer),
             label: label(textTheme, color: colorScheme.onPrimaryContainer),
           ),
         );
 
       case ButtonVariant.mediumHighEmphasisFilledTonal:
-        if (icon == null) {
+        if (widget.icon == null) {
           return buttonConstraints(
             child: FilledButton.tonal(
-              onPressed: disabled ? null : onPressed,
-              style: disabled
+              onPressed: widget.disabled ? null : onPress,
+              style: widget.disabled
                   ? null
                   : FilledButton.styleFrom().copyWith(
                       alignment: Alignment.center,
@@ -104,55 +115,55 @@ class ButtonAtom extends StatelessWidget {
         }
         return buttonConstraints(
           child: FilledButton.tonalIcon(
-            onPressed: disabled ? null : onPressed,
-            style: disabled
+            onPressed: widget.disabled ? null : onPress,
+            style: widget.disabled
                 ? null
                 : FilledButton.styleFrom().copyWith(
                     alignment: Alignment.center,
                     backgroundColor:
                         WidgetStateProperty.all(colorScheme.secondaryContainer),
                   ),
-            icon: Icon(icon, color: colorScheme.onSecondaryContainer),
+            icon: Icon(widget.icon, color: colorScheme.onSecondaryContainer),
             label: label(textTheme, color: colorScheme.onSecondaryContainer),
           ),
         );
       case ButtonVariant.mediumEmphasisOutlined:
-        if (icon == null) {
+        if (widget.icon == null) {
           return buttonConstraints(
             child: OutlinedButton(
-              onPressed: disabled ? null : onPressed,
+              onPressed: widget.disabled ? null : onPress,
               child: label(textTheme, color: colorScheme.primary),
             ),
           );
         }
         return buttonConstraints(
           child: OutlinedButton.icon(
-            onPressed: disabled ? null : onPressed,
-            icon: Icon(icon, color: colorScheme.primary),
+            onPressed: widget.disabled ? null : onPress,
+            icon: Icon(widget.icon, color: colorScheme.primary),
             label: label(textTheme, color: colorScheme.primary),
           ),
         );
       case ButtonVariant.lowEmphasisText:
-        if (icon == null) {
+        if (widget.icon == null) {
           return buttonConstraints(
             child: TextButton(
-              onPressed: disabled ? null : onPressed,
+              onPressed: widget.disabled ? null : onPress,
               child: label(textTheme, color: colorScheme.primary),
             ),
           );
         }
         return buttonConstraints(
           child: TextButton.icon(
-            onPressed: disabled ? null : onPressed,
-            icon: Icon(icon, color: colorScheme.primary),
+            onPressed: widget.disabled ? null : onPress,
+            icon: Icon(widget.icon, color: colorScheme.primary),
             label: label(textTheme, color: colorScheme.primary),
           ),
         );
       case ButtonVariant.lowEmphasisIcon:
         return IconButton(
-          onPressed: onPressed,
+          onPressed: onPress,
           color: colorScheme.primary,
-          icon: Icon(icon),
+          icon: Icon(widget.icon),
         );
     }
   }

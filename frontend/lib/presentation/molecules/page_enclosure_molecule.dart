@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template_atoms/domain/global_variables/global_functions.dart';
 import 'package:flutter_app_template_atoms/presentation/atoms/atoms.dart';
+import 'package:flutter_app_template_atoms/presentation/core/theme_data.dart';
 import 'package:flutter_app_template_atoms/presentation/molecules/molecules.dart';
 
 class PageEnclosureMolecule extends StatelessWidget {
@@ -12,9 +14,13 @@ class PageEnclosureMolecule extends StatelessWidget {
     this.topBarTranslate = true,
     this.topBarType = TopBarType.none,
     this.scaffold = true,
+    this.topBarLeftOnTap,
+    this.floatingActionButtonOnTap,
     this.topBarRightOnTap,
+    this.rightPopupMenu,
     this.expendChild = true,
-    this.topBarRightIcon,
+    this.topBarRightWidget,
+    this.logoBackgroundColor = false,
     super.key,
   });
 
@@ -25,12 +31,26 @@ class PageEnclosureMolecule extends StatelessWidget {
   final bool margin;
   final bool topMargin;
   final bool scaffold;
+  final VoidCallback? floatingActionButtonOnTap;
   final TopBarType topBarType;
+  final VoidCallback? topBarLeftOnTap;
   final VoidCallback? topBarRightOnTap;
+  final List<PopupMenuEntryAtom<Enum>>? rightPopupMenu;
   final bool expendChild;
-  final IconData? topBarRightIcon;
+  final Widget? topBarRightWidget;
+  final bool logoBackgroundColor;
+
+  void topBarRightOnTapTemp() {
+    tapWithSoundAndVibration();
+    topBarRightOnTap!();
+  }
 
   Widget topBarHelper() {
+    void Function()? onRightTupFunction;
+    if (topBarRightOnTap != null) {
+      onRightTupFunction = topBarRightOnTapTemp;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,15 +59,17 @@ class PageEnclosureMolecule extends StatelessWidget {
           title: title,
           margin: false,
           translate: topBarTranslate,
-          rightOnTap: topBarRightOnTap,
-          rightIcon: topBarRightIcon,
+          leftOnTap: topBarLeftOnTap,
+          rightOnTap: onRightTupFunction,
+          rightPopupMenu: rightPopupMenu,
+          rightWidget: topBarRightWidget,
         ),
         if (subTitle != null)
           TextAtom(
             subTitle!,
             variant: TextVariant.smallTitle,
           ),
-        if (topMargin) const SeparatorAtom(variant: SeparatorVariant.farApart),
+        if (topMargin) const SeparatorAtom(),
         Expanded(
           child: child,
         ),
@@ -63,8 +85,24 @@ class PageEnclosureMolecule extends StatelessWidget {
       page = MarginedExpandedAtom(child: page);
     }
 
+    if (logoBackgroundColor) {
+      page = ColoredBox(
+        color: AppThemeData.logoSecondaryBackgroundColor,
+        child: page,
+      );
+    }
+
     if (scaffold) {
-      page = Scaffold(body: page);
+      page = Scaffold(
+        body: page,
+        floatingActionButton: floatingActionButtonOnTap == null
+            ? null
+            : FloatingActionButton(
+                onPressed: floatingActionButtonOnTap,
+                child: const Icon(Icons.add),
+              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      );
     }
     if (expendChild) {
       page = Expanded(child: page);

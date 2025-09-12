@@ -10,16 +10,15 @@ class TopBarMolecule extends StatelessWidget {
     this.rightPopupMenu,
     this.translate = true,
     this.margin = true,
-    this.rightIcon,
+    this.rightWidget,
   });
 
   final TopBarType topBarType;
   final String? title;
   final VoidCallback? leftOnTap;
   final VoidCallback? rightOnTap;
-
   final List<PopupMenuEntryAtom>? rightPopupMenu;
-  final IconData? rightIcon;
+  final Widget? rightWidget;
   final bool translate;
   final bool margin;
 
@@ -61,13 +60,7 @@ class TopBarMolecule extends StatelessWidget {
                           itemBuilder: (BuildContext context) =>
                               rightPopupMenu!,
                         ),
-                      if (rightOnTap != null)
-                        ButtonAtom(
-                          variant: ButtonVariant.lowEmphasisIcon,
-                          onPressed: rightOnTap!,
-                          translate: translate,
-                          icon: Icons.more_vert,
-                        ),
+                      rightButton(textTheme),
                       if (rightPopupMenu == null && rightOnTap == null)
                         TextAtom(
                           '',
@@ -109,28 +102,32 @@ class TopBarMolecule extends StatelessWidget {
                     variant: TextVariant.title,
                   ),
                 ),
-                Row(
-                  children: [
-                    if (rightOnTap != null)
-                      ButtonAtom(
-                        variant: ButtonVariant.lowEmphasisIcon,
-                        onPressed: rightOnTap!,
-                        translate: translate,
-                        icon: rightIcon ?? Icons.more_vert,
-                      )
-                    else
-                      TextAtom(
-                        '',
-                        style: textTheme.headlineSmall,
-                      ),
-                  ],
-                ),
+                rightButton(textTheme),
               ],
             ),
           ],
         );
     }
   }
+
+  Widget rightButton(TextTheme textTheme) => Row(
+        children: [
+          if (rightWidget != null)
+            GestureDetector(onTap: rightOnTap, child: rightWidget)
+          else if (rightOnTap != null)
+            ButtonAtom(
+              variant: ButtonVariant.lowEmphasisIcon,
+              onPressed: rightOnTap!,
+              translate: translate,
+              icon: Icons.more_vert,
+            )
+          else
+            TextAtom(
+              '',
+              style: textTheme.headlineSmall,
+            ),
+        ],
+      );
 }
 
 enum TopBarType { none, back, close }

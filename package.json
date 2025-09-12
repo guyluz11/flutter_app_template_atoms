@@ -1,0 +1,10 @@
+{
+  "name": "youtube_helper",
+  "version": "0.0.1",
+  "description": "Monorepo for youtube_helper project. Contains Dart, Flutter, Python, and JS/TS packages.",
+  "scripts": {
+    "install-melos": "cd tools/project_organizer && dart pub get",
+    "bootstrap": "cd tools/project_organizer && dart run melos bootstrap",
+    "clean": "cd tools/project_organizer && dart run melos clean"
+  }
+}

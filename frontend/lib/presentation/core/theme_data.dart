@@ -7,4 +7,5 @@ class AppThemeData {
       const EdgeInsets.symmetric(horizontal: generalSpacing);
 
   static Color logoBackgroundColor = const Color(0xff061E4A);
+  static Color logoSecondaryBackgroundColor = const Color(0xff8cc0d2);
 }
