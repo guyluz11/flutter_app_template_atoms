@@ -20,7 +20,7 @@
 <br/><br/>
 
 
-<div align="center"><img alt="Logo" height="400" src="https://play-lh.googleusercontent.com/xm7ivKgfURQ6QREojQ4XxHxjWQfUjfy3TllQXpfveMkLQMzOI9JvoTuMtr7HUs_0y_0=w240-h400"></div>
+<div align="center"><img alt="Logo" height="400" src="https://raw.githubusercontent.com/guyluz11/flutter_app_template_atoms/refs/heads/main/frontend/assets/logo.png"></div>
 
 <br/><br/>
 
