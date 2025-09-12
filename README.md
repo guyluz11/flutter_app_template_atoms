@@ -12,7 +12,7 @@
   <a href="https://play.google.com/store/apps/details?id=site.flutter_app_template_atoms">
     <img border="0" alt="Get it on Google Play" src="https://user-images.githubusercontent.com/9304740/117003444-8b58a080-aced-11eb-94bc-bfb2505f515d.png" style="width: 250px; height: 83px;">
   </a>
-  <a href="https://apps.apple.com/us/app/flutter_app_template_atoms-youtube-summary/id6747427290">
+  <a href="https://apps.apple.com/us/app/flutter_app_template_atoms/id578776">
     <img border="0" alt="Download on the App Store" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="height: 83px;">
   </a>
 </div>
@@ -24,8 +24,7 @@
 
 <br/><br/>
 
-### flutter_app_template_atoms is a cross-platform app that helps users extract, transcribe, and summarize YouTube video content.
-### We welcome you to building the future of video understanding!
+### flutter_app_template_atoms is a cross-platform app that 
 
 
 <br/><br/>
