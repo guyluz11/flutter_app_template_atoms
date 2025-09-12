@@ -14,7 +14,7 @@ class ToggleSwitchAtom extends StatefulWidget {
 
   final IconData offIcon;
   final IconData onIcon;
-  final Function(bool value) onChange;
+  final Function({required bool value}) onChange;
   final bool initialValue;
   final bool controlByParent;
   final bool disable;
@@ -32,9 +32,10 @@ class _ToggleSwitchAtomState extends State<ToggleSwitchAtom> {
 
   late bool toggle;
 
+  // ignore: avoid_positional_boolean_parameters
   void onChange(bool value) {
     setState(() => toggle = value);
-    widget.onChange(value);
+    widget.onChange(value: value);
   }
 
   @override
@@ -50,20 +51,21 @@ class _ToggleSwitchAtomState extends State<ToggleSwitchAtom> {
       style: ToggleStyle(
         backgroundColor: toggle
             ? (widget.disable
-                ? colorScheme.onSurface.withOpacity(0.12)
+                ? colorScheme.onSurface.withAlpha((0.12 * 255).toInt())
                 : colorScheme.primary)
             : (widget.disable
-                ? colorScheme.surfaceContainerHighest.withOpacity(0.12)
+                ? colorScheme.surfaceContainerHighest
+                    .withAlpha((0.12 * 255).toInt())
                 : colorScheme.surfaceContainerHighest),
         borderColor: widget.disable
             ? colorScheme.onSurface
             : (toggle ? colorScheme.primary : colorScheme.outline),
         indicatorColor: toggle
             ? (widget.disable
-                ? colorScheme.surface.withOpacity(1)
+                ? colorScheme.surface.withAlpha(1 * 255)
                 : colorScheme.onPrimary)
             : (widget.disable
-                ? colorScheme.onSurface.withOpacity(0.38)
+                ? colorScheme.onSurface.withAlpha((0.38 * 255).toInt())
                 : colorScheme.outline),
       ),
       current: toggle,
@@ -73,13 +75,14 @@ class _ToggleSwitchAtomState extends State<ToggleSwitchAtom> {
         FaIcon(
           widget.offIcon,
           color: widget.disable
-              ? colorScheme.surfaceContainerHighest.withOpacity(0.38)
+              ? colorScheme.surfaceContainerHighest
+                  .withAlpha((0.38 * 255).toInt())
               : colorScheme.surfaceContainerHighest,
         ),
         FaIcon(
           widget.onIcon,
           color: widget.disable
-              ? colorScheme.onSurface.withOpacity(0.38)
+              ? colorScheme.onSurface.withAlpha((0.38 * 255).toInt())
               : colorScheme.onPrimaryContainer,
         ),
       ],
